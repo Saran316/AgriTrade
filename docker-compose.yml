@@ -5,10 +5,10 @@ services:
     container_name: agritrade-mysql
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: agritrade
-      MYSQL_USER: saran
-      MYSQL_PASSWORD: Saran@123
-      MYSQL_ROOT_PASSWORD: Root@123
+  MYSQL_DATABASE: ${MYSQL_DATABASE}
+  MYSQL_USER: ${MYSQL_USER}
+  MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+  MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     volumes:
       - mysql_data:/var/lib/mysql
     healthcheck:
@@ -26,10 +26,10 @@ services:
       mysql:
         condition: service_healthy
     environment:
-      JWT_SECRET: ${JWT_SECRET}
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/agritrade
-      SPRING_DATASOURCE_USERNAME: saran
-      SPRING_DATASOURCE_PASSWORD: Saran@123
+  JWT_SECRET: ${JWT_SECRET}
+  SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/agritrade
+  SPRING_DATASOURCE_USERNAME: ${MYSQL_USER}
+  SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
     ports:
       - "8080:8080"
 
